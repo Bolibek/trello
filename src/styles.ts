@@ -1,36 +1,114 @@
-import styled from "styled-components"
+import styled from "styled-components";
+
+interface AddItemButtonProps {
+	dark?: boolean;
+}
 
 export const AppContainer = styled.div`
-align-items: flex-start;
-background-color: #3179ba;
-display: flex;
-flex-direction: row;
-height: 100%;
-padding: 20px;
+	background-color: #3179ba;
+	height: 100%;
+	width: 100%;
+`;
+export const BoardContainer = styled.div`
+	align-items: flex-start;
+	background-color: transparent;
+	display: flex;
+	flex-direction: row;
+	padding: 20px;
+	width: 100%;
+`;
+
+export const ColumnContainer = styled.div`
+	background-color: #ebecf0;
+	width: 350px;
+	min-height: 40px;
+	margin-right: 20px;
+	border-radius: 3px;
+	padding: 8px 8px;
+	flex-grow: 0;
+`;
+
+export const ColumnTitle = styled.div`
+	padding: 6px 16px 12px;
+	font-weight: bold;
+`;
+
+export const CardContainer = styled.div`
+	background-color: #fff;
+	cursor: pointer;
+	margin-bottom: 0.5rem;
+	padding: 0.5rem 1rem;
+	max-width: 350px;
+	border-radius: 3px;
+	box-shadow: #091e4240 0px 1px 0px 0px;
+`;
+
+export const AddItemButton = styled.button<AddItemButtonProps>`
+	background-color: #ffffff3d;
+	border-radius: 3px;
+	border: none;
+	color: ${(props) => (props.dark ? "#000" : "#fff")};
+	cursor: pointer;
+	max-width: 300px;
+	padding: 10px 12px;
+	text-align: left;
+	transition: background 85ms ease-in;
+	width: 100%;
+	&:hover {
+		background-color: #ffffff52;
+	}
+`;
+
+export const NewItemFormContainer = styled.div`
+	max-width: 300px;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	align-items: flex-start;
+`;
+
+export const NewItemButton = styled.button`
+	background-color: #5aac44;
+	border-radius: 3px;
+	border: none;
+	box-shadow: none;
+	color: #fff;
+	padding: 6px 12px;
+	text-align: center;
+`;
+
+export const NewItemInput = styled.input`
+border-radius: 3px;
+border: none;
+box-shadow: #091e4240 0px 1px 0px 0px;
+margin-bottom: 0.5rem;
+padding: 0.5rem 1rem;
 width: 100%;
 `
 
-export const ColumnContainer = styled.div`
-background-color: #ebecf0;
-width: 350px;
-min-height: 40px;
-margin-right: 20px;
-border-radius: 3px;
-padding: 8px 8px;
-flex-grow: 0;
+export const NavbarBody = styled.div`
+  display: flex;
+	flex-direction: row;
+	align-items: center;
+  background-color:  #026AA7;
+  border-bottom-color: transparent;
+	padding: 0.5rem;
+	color: white;
+	width:100%
+}
 `
 
-export const ColumnTitle = styled.div`
-padding: 6px 16px 12px;
-font-weight: bold;
+export const FrameContainer = styled.div`
+  display: flex;
+	flex-direction: row;
+  justify-content: space-around;
+	align-items: center;
+	width:50%
 `
 
-export const CardContainer = styled.div`
-background-color: #fff;
-cursor: pointer;
-margin-bottom: 0.5rem;
-padding: 0.5rem 1rem;
-max-width: 350px;
-border-radius: 3px;
-box-shadow: #091e4240 0px 1px 0px 0px;
+export const CreatContainer = styled.div`
+  background-color: #ffffff35;
+	border: 1px solid white;
+	padding: 5px;
+	border-radius: 5px;
 `
