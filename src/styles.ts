@@ -4,21 +4,13 @@ interface AddItemButtonProps {
 	dark?: boolean;
 }
 
-export const AppContainer = styled.div`
-	background-color: #3179ba;
-	height: 100%;
-	width: 100%;
-`;
-export const BoardContainer = styled.div`
-	align-items: flex-start;
-	background-color: transparent;
-	display: flex;
-	flex-direction: row;
-	padding: 20px;
-	width: 100%;
-`;
+interface DragPreviewContainerProps {
+	isHidden?: boolean
+}
 
-export const ColumnContainer = styled.div`
+
+export const ColumnContainer = styled.div< DragPreviewContainerProps>`
+	opacity: ${props => (props.isHidden ? 0.3 : 1)} ;
 	background-color: #ebecf0;
 	width: 350px;
 	min-height: 40px;
@@ -26,7 +18,17 @@ export const ColumnContainer = styled.div`
 	border-radius: 3px;
 	padding: 8px 8px;
 	flex-grow: 0;
-`;
+`
+
+export const CustomDragLayerContainer = styled.div`
+	height: 100%;
+	left: 0;
+	pointer-events: none;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 100;
+`
 
 export const ColumnTitle = styled.div`
 	padding: 6px 16px 12px;
@@ -60,7 +62,7 @@ export const AddItemButton = styled.button<AddItemButtonProps>`
 `;
 
 export const NewItemFormContainer = styled.div`
-	max-width: 300px;
+	max-width: 350px;
 	display: flex;
 	flex-direction: column;
 	width: 100%;
@@ -86,25 +88,7 @@ padding: 0.5rem 1rem;
 width: 100%;
 `
 
-export const NavbarBody = styled.div`
-  display: flex;
-	flex-direction: row;
-	align-items: center;
-  background-color:  #026AA7;
-  border-bottom-color: transparent;
-	padding: 0.5rem;
-	color: white;
-	width:100%
-}
-`
 
-export const FrameContainer = styled.div`
-  display: flex;
-	flex-direction: row;
-  justify-content: space-around;
-	align-items: center;
-	width:50%
-`
 
 export const CreatContainer = styled.div`
   background-color: #ffffff35;
@@ -112,3 +96,4 @@ export const CreatContainer = styled.div`
 	padding: 5px;
 	border-radius: 5px;
 `
+
