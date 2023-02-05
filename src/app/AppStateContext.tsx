@@ -6,20 +6,33 @@ import {
 } from "react";
 import { v4 as uuid } from "uuid";
 import { findItemIndexById } from "../utils/findItemIndexById";
+import { moveItem } from "../utils/moveItem";
+import { DragItem } from "../DragItem";
 
 type Action =
 	| {
-			type: "ADD_LIST";
-			payload: string;
-	  }
+		type: "ADD_LIST";
+		payload: string;
+	}
 	| {
-			type: "ADD_TASK";
-			payload: { text: string; taskId: string };
-	  };
+		type: "ADD_TASK";
+		payload: { text: string; taskId: string };
+	}
+	| {
+		type: "MOVE_LIST"
+		payload: {
+			dragIndex: number
+			hoverIndex: number
+		}
+	}
+	| {
+		type: "SET_DRAGGED_ITEM"
+		payload: DragItem | undefined
+	}
 
 interface AppStateContextProps {
 	state: AppState;
-  dispatch(action: Action): void;
+	dispatch(action: Action): void;
 }
 
 const AppStateContext = createContext<AppStateContextProps>(
@@ -42,6 +55,7 @@ interface List {
 
 export interface AppState {
 	lists: List[];
+	draggedItem: DragItem | undefined;
 }
 
 export const appData: AppState = {
@@ -62,6 +76,7 @@ export const appData: AppState = {
 			tasks: [{ id: "c3", text: "Begin to use static typing" }],
 		},
 	],
+	draggedItem: undefined
 };
 
 
@@ -81,7 +96,7 @@ const appStateReducer = (state: AppState, action: Action): AppState => {
 				state.lists,
 				action.payload.taskId
 			);
-      const tasks = state.lists[targetLaneIndex].tasks
+			const tasks = state.lists[targetLaneIndex].tasks
 			tasks[tasks.length - 1].text !== action.payload.text && state.lists[targetLaneIndex].tasks.push({
 				id: uuid(),
 				text: action.payload.text,
@@ -89,6 +104,14 @@ const appStateReducer = (state: AppState, action: Action): AppState => {
 			return {
 				...state,
 			};
+		case "MOVE_LIST": {
+			const { dragIndex, hoverIndex } = action.payload
+			state.lists = moveItem(state.lists, dragIndex, hoverIndex)
+			return { ...state }
+		}
+		case "SET_DRAGGED_ITEM": {
+			return { ...state, draggedItem: action.payload }
+		}
 		default: {
 			return state;
 		}
