@@ -8,15 +8,10 @@ interface DragPreviewContainerProps {
 	isHidden?: boolean
 }
 
+  // transform: ${ props => (props.isPreview? "rotate(5deg)" : undefined) } ;
 
-export const ColumnContainer = styled.div< DragPreviewContainerProps>`
-	opacity: ${props => (props.isHidden ? 0.3 : 1)} ;
-	background-color: #ebecf0;
-	width: 350px;
-	min-height: 40px;
-	margin-right: 20px;
-	border-radius: 3px;
-	padding: 8px 8px;
+export const ColumnContainer = styled.div<DragPreviewContainerProps>`
+	opacity: ${props => (props.isHidden ? 0 : 1)} ;
 	flex-grow: 0;
 `
 
